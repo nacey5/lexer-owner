@@ -1,4 +1,6 @@
-package com.hzh.lexer.core.ast;
+package com.hzh.lexer.core.ast.list;
+
+import com.hzh.lexer.core.ast.ASTree;
 
 import java.util.Iterator;
 import java.util.List;

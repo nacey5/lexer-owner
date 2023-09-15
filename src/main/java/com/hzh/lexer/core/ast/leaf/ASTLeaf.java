@@ -1,5 +1,6 @@
-package com.hzh.lexer.core.ast;
+package com.hzh.lexer.core.ast.leaf;
 
+import com.hzh.lexer.core.ast.ASTree;
 import com.hzh.lexer.core.token.Token;
 
 import java.util.ArrayList;

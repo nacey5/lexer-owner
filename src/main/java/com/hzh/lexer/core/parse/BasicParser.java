@@ -1,6 +1,18 @@
-package com.hzh.lexer.core;
+package com.hzh.lexer.core.parse;
+
+import com.hzh.lexer.core.ast.ASTree;
+import com.hzh.lexer.core.ast.leaf.Name;
+import com.hzh.lexer.core.ast.leaf.NumberLiteral;
+import com.hzh.lexer.core.ast.leaf.StringLiteral;
+import com.hzh.lexer.core.parse.stmt.BinaryExpr;
+import com.hzh.lexer.core.lexer.Lexer;
+import com.hzh.lexer.core.parse.stmt.*;
+import com.hzh.lexer.core.token.Token;
+import com.hzh.lexer.excpetion.ParseException;
 
 import java.util.HashSet;
+
+import static com.hzh.lexer.core.parse.Parser.rule;
 
 /**
  * @ClassName BasicParser
@@ -11,7 +23,7 @@ import java.util.HashSet;
  **/
 public class BasicParser {
     HashSet<String> reserved = new HashSet<String>();
-    Operators operators = new Operators();
+    Parser.Operators operators = new Parser.Operators();
     Parser expr0 = rule();
     Parser primary = rule(PrimaryExpr.class)
             .or(rule().sep("(").ast(expr0).sep(")"),
@@ -42,16 +54,17 @@ public class BasicParser {
         reserved.add("}");
         reserved.add(Token.EOL);
 
-        operators.add("=", 1, Operators.RIGHT);
-        operators.add("==", 2, Operators.LEFT);
-        operators.add(">", 2, Operators.LEFT);
-        operators.add("<", 2, Operators.LEFT);
-        operators.add("+", 3, Operators.LEFT);
-        operators.add("-", 3, Operators.LEFT);
-        operators.add("*", 4, Operators.LEFT);
-        operators.add("/", 4, Operators.LEFT);
-        operators.add("%", 4, Operators.LEFT);
+        operators.add("=", 1, Parser.Operators.RIGHT);
+        operators.add("==", 2, Parser.Operators.LEFT);
+        operators.add(">", 2, Parser.Operators.LEFT);
+        operators.add("<", 2, Parser.Operators.LEFT);
+        operators.add("+", 3, Parser.Operators.LEFT);
+        operators.add("-", 3, Parser.Operators.LEFT);
+        operators.add("*", 4, Parser.Operators.LEFT);
+        operators.add("/", 4, Parser.Operators.LEFT);
+        operators.add("%", 4, Parser.Operators.LEFT);
     }
+
     public ASTree parse(Lexer lexer) throws ParseException {
         return program.parse(lexer);
     }

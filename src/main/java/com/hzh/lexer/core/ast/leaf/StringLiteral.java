@@ -1,20 +1,21 @@
 package com.hzh.lexer.core.ast.leaf;
 
+import com.hzh.lexer.core.ast.leaf.ASTLeaf;
 import com.hzh.lexer.core.token.Token;
 
 /**
- * @ClassName Name
+ * @ClassName StringLiteral
  * @Description TODO
  * @Author DaHuangGo
- * @Date 2023/9/14 16:43
+ * @Date 2023/9/15 14:39
  * @Version 0.0.1
  **/
-public class Name extends ASTLeaf {
-    public Name(Token token) {
+public class StringLiteral extends ASTLeaf {
+    public StringLiteral(Token token) {
         super(token);
     }
 
-    public String name() {
+    public String value(){
         return token.getText();
     }
 }
